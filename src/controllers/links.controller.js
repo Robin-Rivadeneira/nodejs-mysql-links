@@ -7,15 +7,19 @@ linksCtrl.renderAddLink = (req, res) => {
 };
 
 linksCtrl.addLink = async (req, res) => {
-    const { title, url, description } = req.body;
+    const { nameProduct, initCantd, updateCantd, iva, cost, tipo,unidadMedida } = req.body;
     const newLink = {
-        title,
-        url,
-        description,
+        nameProduct,
+        initCantd,
+        cost,
+        unidadMedida,
+        tipo,
+        updateCantd,
+        iva,
         user_id: req.user.id
     };
     await pool.query('INSERT INTO links set ?', [newLink]);
-    req.flash('success', 'Link Saved Successfully');
+    req.flash('success', 'Se Guardo Correctamente');
     res.redirect('/links');
 }
 
@@ -27,7 +31,7 @@ linksCtrl.renderLinks = async (req, res) => {
 linksCtrl.deleteLink = async (req, res) => {
     const { id } = req.params;
     await pool.query('DELETE FROM links WHERE ID = ?', [id]);
-    req.flash('success', 'Link Removed Successfully');
+    req.flash('success', 'Se Elimino Correctamente');
     res.redirect('/links');
 };
 
@@ -40,14 +44,18 @@ linksCtrl.renderEditLink = async (req, res) => {
 
 linksCtrl.editLink = async (req,res) => {
     const { id } = req.params;
-    const { title, description, url} = req.body; 
+    const { nameProduct, initCantd,updateCantd,iva, cost, tipo,unidadMedida} = req.body; 
     const newLink = {
-        title,
-        description,
-        url
+        nameProduct,
+        initCantd,
+        cost,
+        tipo,
+        updateCantd,
+        iva,
+        unidadMedida
     };
     await pool.query('UPDATE links set ? WHERE id = ?', [newLink, id]);
-    req.flash('success', 'Link Updated Successfully');
+    req.flash('success', 'Se Actualizo Correctamente');
     res.redirect('/links');
 }
 

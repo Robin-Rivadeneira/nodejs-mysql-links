@@ -45,3 +45,18 @@ font-family: 'Oswald', sans-serif;
       font-size: 5.5rem;
     }
   }
+#nombre{
+position: absolute;
+}
+#tipo{
+position: absolute;
+}
+#cantidad{
+position: absolute;
+}
+#costo{
+position: absolute;
+}
+#unidad{
+position: absolute;
+}
